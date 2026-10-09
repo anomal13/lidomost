@@ -153,6 +153,17 @@
   figure img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); }
   figcaption { font-size: 14px; color: var(--muted); margin-top: 10px; }
 
+  /* ситуации */
+  .cases { display: grid; gap: 0; border-top: 2px solid var(--ink); }
+  .case { display: grid; grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1.15fr); gap: 18px; align-items: start; padding-block: 22px; border-bottom: 1px solid var(--line); }
+  .case .when { font-weight: 600; font-size: 18px; }
+  .case .when small { display: block; font-weight: 400; font-size: 15px; color: var(--muted); margin-top: 4px; }
+  .case .to { color: var(--cobalt); font-family: var(--display); font-size: 22px; line-height: 1.2; }
+  .case .then { min-width: 0; }
+  .case .then b { display: block; margin-bottom: 2px; }
+  .case .then span { color: var(--muted); }
+  @media (max-width: 720px) { .case { grid-template-columns: minmax(0, 1fr); gap: 6px; } .case .to { display: none; } .case .then { border-left: 3px solid var(--cobalt); padding-left: 12px; } }
+
   /* сравнение */
   .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
   table { width: 100%; min-width: 680px; border-collapse: collapse; font-size: 15px; }
@@ -334,6 +345,40 @@
     </div>
   </section>
 
+  <section id="situacii">
+    <div class="wrap">
+      <h2>Больше, чем пересылка заявки</h2>
+      <p class="intro">Создать сделку из формы несложно. Трудности начинаются в обычной работе отдела продаж&nbsp;— вот что делает Лидомост в этих случаях.</p>
+      <div class="cases">
+        <div class="case">
+          <div class="when">Клиент оставил заявку второй раз<small>в прошлый раз написал «8&nbsp;916…», сейчас «+7&nbsp;916…»</small></div>
+          <div class="to" aria-hidden="true">→</div>
+          <div class="then"><b>Сделка у того же клиента</b><span>Телефоны сравниваются по цифрам, история общения остаётся в одной карточке.</span></div>
+        </div>
+        <div class="case">
+          <div class="when">Пришёл по рекламе, заявку оставил через неделю<small>за это время зашёл на сайт ещё раз из поиска</small></div>
+          <div class="to" aria-hidden="true">→</div>
+          <div class="then"><b>В сделке рекламная кампания</b><span>Метки и ClientID Метрики хранятся 90 дней и не перетираются переходом без меток.</span></div>
+        </div>
+        <div class="case">
+          <div class="when">Мегаплан 10 минут не отвечал<small>обновление, сбой сети, ночные работы</small></div>
+          <div class="to" aria-hidden="true">→</div>
+          <div class="then"><b>Заявка дождётся</b><span>Плагин повторит отправку через 5 минут, 15 минут и дальше, а если не выйдет&nbsp;— пришлёт письмо.</span></div>
+        </div>
+        <div class="case">
+          <div class="when">Менеджер спрашивает: «С какой формы и страницы?»<small>на сайте форма звонка, расчёта и заявка для юрлиц</small></div>
+          <div class="to" aria-hidden="true">→</div>
+          <div class="then"><b>Всё уже в сделке</b><span>Название формы, страница, страница входа и источник перехода&nbsp;— в описании, ответы&nbsp;— с понятными подписями.</span></div>
+        </div>
+        <div class="case">
+          <div class="when">В Мегаплане что-то поменяли<small>удалили поле, включили капчу в веб-форме</small></div>
+          <div class="to" aria-hidden="true">→</div>
+          <div class="then"><b>Заявка не теряется, причина видна</b><span>Плагин отправит сделку без проблемного поля, а в журнале на сайте покажет, что исправить.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="sravnenie">
     <div class="wrap">
       <h2>Чем отличается от других способов</h2>
@@ -357,7 +402,7 @@
   <section id="ceny">
     <div class="wrap">
       <h2>Цены</h2>
-      <p class="intro">Плагин устанавливаю и настраиваю сам. В любой пакет входит тестовая заявка и проверка результата в вашем Мегаплане. Без абонентской платы.</p>
+      <p class="intro">Вы получаете не файл плагина, а работающую интеграцию: устанавливаю, настраиваю формы и Мегаплан, отправляю тестовую заявку и показываю результат в вашей CRM. Без абонентской платы.</p>
       <div class="plans">
         <div class="plan">
           <h3>Старт</h3>
