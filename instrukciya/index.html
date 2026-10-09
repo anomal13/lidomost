@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Настройка Megaplan Leads</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+  /* Документ-инструкция: узкая колонка текста, слева на широком экране — оглавление шагов */
+  :root {
+    --bg: #f6f7f9;
+    --paper: #ffffff;
+    --ink: #17202b;
+    --muted: #5b6676;
+    --line: #dde2e9;
+    --accent: #1f5fbf;
+    --accent-soft: #e8f0fc;
+    --warn: #8a5300;
+    --warn-soft: #fff4de;
+    --ok: #1d7a43;
+    --code-bg: #eef1f5;
+    --font-body: "Golos Text", "Segoe UI", Roboto, Arial, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #11161d; --paper: #18202a; --ink: #e6ebf2; --muted: #9aa6b6; --line: #2a3542;
+      --accent: #7aa7ee; --accent-soft: #1b2a40; --warn: #f0b562; --warn-soft: #2b2312; --ok: #6fcf97; --code-bg: #222c38;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #11161d; --paper: #18202a; --ink: #e6ebf2; --muted: #9aa6b6; --line: #2a3542;
+    --accent: #7aa7ee; --accent-soft: #1b2a40; --warn: #f0b562; --warn-soft: #2b2312; --ok: #6fcf97; --code-bg: #222c38;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.6 var(--font-body); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: 16px; padding-block: 32px 64px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; }
+  @media (max-width: 860px) { .wrap { grid-template-columns: minmax(0, 1fr); gap: 16px; } .toc { position: static !important; } }
+
+  .toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; font-size: 14px; }
+  .toc p { margin: 0 0 8px; font-weight: 600; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; font-size: 12px; }
+  .toc ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+  .toc a { color: var(--ink); text-decoration: none; }
+  .toc a:hover, .toc a:focus-visible { color: var(--accent); text-decoration: underline; }
+
+  main { min-width: 0; }
+  header { margin-bottom: 32px; }
+  .eyebrow { font-size: 13px; color: var(--muted); margin: 0 0 6px; }
+  h1 { font-size: clamp(28px, 4vw, 38px); line-height: 1.15; margin: 0 0 12px; font-weight: 700; text-wrap: balance; }
+  .lead { font-size: 18px; color: var(--muted); max-width: 62ch; margin: 0; }
+  h2 { font-size: 24px; line-height: 1.25; margin: 48px 0 12px; text-wrap: balance; scroll-margin-top: 24px; }
+  h3 { font-size: 18px; margin: 28px 0 8px; }
+  p, li { max-width: 68ch; }
+  ul, ol { padding-left: 22px; }
+  li + li { margin-top: 4px; }
+  a { color: var(--accent); }
+  code { font-family: var(--font-mono); font-size: .86em; background: var(--code-bg); padding: 1px 6px; border-radius: 4px; overflow-wrap: anywhere; }
+  .path { font-weight: 500; }
+
+  .step-num { display: inline-block; min-width: 1.9em; color: var(--accent); font-variant-numeric: tabular-nums; }
+
+  .note, .warn { border-radius: 8px; padding: 12px 16px; margin: 16px 0; max-width: 72ch; }
+  .note { background: var(--accent-soft); }
+  .warn { background: var(--warn-soft); }
+  .warn strong { color: var(--warn); }
+  .note p, .warn p { margin: 0; }
+
+  figure { margin: 20px 0 28px; }
+  figure img { display: block; width: 100%; max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+  figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; }
+
+  .table-wrap { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 15px; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  th { font-weight: 600; background: var(--code-bg); }
+  tr:last-child td { border-bottom: 0; }
+  .yes { color: var(--ok); font-weight: 600; }
+
+  dl.faq { margin: 0; }
+  dl.faq dt { font-weight: 600; margin-top: 20px; }
+  dl.faq dd { margin: 4px 0 0; max-width: 68ch; }
+
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Оглавление">
+    <p>Шаги</p>
+    <ol>
+      <li><a href="#vebforma">Веб-форма в Мегаплане</a></li>
+      <li><a href="#ustanovka">Установка плагина</a></li>
+      <li><a href="#api">Подключение API</a></li>
+      <li><a href="#sposob">Способ отправки</a></li>
+      <li><a href="#formy">Поля форм сайта</a></li>
+      <li><a href="#metki">UTM и ClientID</a></li>
+      <li><a href="#metrika">Цель Метрики</a></li>
+      <li><a href="#zhurnal">Журнал и повторы</a></li>
+    </ol>
+    <p style="margin-top:20px">Ещё</p>
+    <ol style="list-style:none;padding-left:0">
+      <li><a href="#problemy">Частые проблемы</a></li>
+      <li><a href="#trebovaniya">Требования</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <header>
+      <p class="eyebrow"><a href="../">Megaplan Leads</a> · инструкция · версия 0.5</p>
+      <h1>Megaplan Leads: заявки с сайта в Мегаплан</h1>
+      <p class="lead">Каждая заявка из Contact Form 7, Elementor Pro или WPForms становится сделкой в Мегаплане — с контактами клиента, полями формы, UTM-метками и ClientID Яндекс Метрики. Настройка занимает 10–15 минут.</p>
+    </header>
+
+    <figure>
+      <img src="../screenshots/06-sdelka-v-megaplane.png" alt="Сделка в Мегаплане: клиент Анна Смирнова, описание с полями формы и метками, поля UTM Source, YM ClientID и Услуга заполнены" width="2160" height="1500">
+      <figcaption>Так выглядит заявка с сайта в Мегаплане: клиент с телефоном и email, ответы из формы в описании, метки и услуга — в полях сделки.</figcaption>
+    </figure>
+
+    <h2 id="vebforma"><span class="step-num">1.</span>Создайте веб-форму в Мегаплане</h2>
+    <p>Веб-форма — это адрес в Мегаплане, на который плагин отправляет заявки. Она нужна для простого способа отправки и как запасной путь, если вы выберете отправку через API.</p>
+    <ol>
+      <li>В Мегаплане откройте <span class="path">Настройки → Интеграции → Глобальные → Формы</span> и нажмите <b>Новая форма</b>.</li>
+      <li>Выберите результат <b>Процесс</b>, тип лица (<b>Человек</b> для частных клиентов или <b>Компания</b>), тип контакта, схему процесса и этап.</li>
+      <li>В конструкторе перетащите в форму поля, которые будете заполнять с сайта: имя или название, телефон, email, описание и нужные поля сделки.</li>
+      <li>Откройте вкладку <b>Настройки</b> формы, <b>снимите галочку «Капча»</b> и сохраните.</li>
+    </ol>
+    <div class="warn"><p><strong>Капча должна быть выключена.</strong> Новая веб-форма создаётся с включённой капчей, и тогда Мегаплан отклоняет все заявки, отправленные с сервера. Плагин подскажет об этом в журнале, но лучше выключить сразу.</p></div>
+
+    <h2 id="ustanovka"><span class="step-num">2.</span>Установите плагин</h2>
+    <ol>
+      <li>В WordPress откройте <span class="path">Плагины → Добавить новый → Загрузить плагин</span> и выберите архив <code>megaplan-leads.zip</code>.</li>
+      <li>Нажмите <b>Активировать</b>. В меню слева появится раздел <b>Мегаплан</b> с пунктами «Журнал», «Формы» и «Настройки».</li>
+    </ol>
+
+    <h2 id="api"><span class="step-num">3.</span>Подключите API Мегаплана</h2>
+    <p>Шаг необязательный, но с ним настройка проще: веб-формы и поля сделки выбираются из списка, а плагин сам предупреждает о капче и отключённых формах.</p>
+    <ol>
+      <li>Откройте <span class="path">Мегаплан → Настройки</span> в WordPress.</li>
+      <li>В блоке «Подключение к API Мегаплана» укажите адрес аккаунта (например, <code>company.megaplan.ru</code>), логин и пароль сотрудника, которому видны настройки веб-форм.</li>
+      <li>Нажмите <b>Подключить</b>.</li>
+    </ol>
+    <div class="note"><p>Пароль не сохраняется: плагин один раз получает токен доступа и дальше обновляет его сам. Отключить доступ можно в любой момент ссылкой «Отключить». Заявки продолжат уходить через веб-форму.</p></div>
+    <figure>
+      <img src="../screenshots/02-podklyuchenie-api.png" alt="Блок подключения к API: аккаунт подключён, таблица веб-форм с процессом, типом лица и состоянием" width="1920" height="312">
+      <figcaption>После подключения видны все веб-формы аккаунта и их состояние. Если в форме включена капча, здесь будет предупреждение.</figcaption>
+    </figure>
+
+    <h2 id="sposob"><span class="step-num">4.</span>Выберите способ отправки</h2>
+    <p>В разделе <b>Отправка</b> на странице настроек выберите, как заявка попадёт в Мегаплан. Раздел появляется после подключения API.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>Через веб-форму</th><th>Через API</th></tr></thead>
+        <tbody>
+          <tr><td>Повторное обращение клиента</td><td>Каждая заявка — новый клиент</td><td><span class="yes">Клиент ищется по телефону и email</span>, сделка привязывается к нему</td></tr>
+          <tr><td>Процесс, статус, менеджер</td><td>Как в настройках веб-формы</td><td>Выбираются в плагине</td></tr>
+          <tr><td>Поля сделки</td><td>Только добавленные в веб-форму</td><td>Любые поля процесса</td></tr>
+          <tr><td>Нужен API</td><td>Нет</td><td>Да</td></tr>
+          <tr><td>Если Мегаплан недоступен</td><td>Очередь повторов</td><td>Отправка через веб-форму, затем очередь повторов</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Телефон сравнивается по цифрам, поэтому <code>8 (912) 555-44-01</code> и <code>+79125554401</code> — один и тот же клиент. Карточку найденного клиента плагин не меняет, а что посетитель указал в форме, записывает первой строкой описания сделки.</p>
+    <figure>
+      <img src="../screenshots/03-otpravka-cherez-api.png" alt="Раздел «Отправка»: выбран способ «Через API», процесс, статус новой сделки, менеджер и поиск повторных обращений" width="1920" height="831">
+      <figcaption>Отправка через API: процесс, статус и менеджер новой сделки, поиск клиента по телефону и email.</figcaption>
+    </figure>
+    <p>Ниже в настройках выберите веб-форму из списка. При отправке через веб-форму тип лица подставится из неё сам. При отправке через API укажите, кем создавать новых клиентов: человеком или компанией.</p>
+
+    <h2 id="formy"><span class="step-num">5.</span>Настройте поля форм сайта</h2>
+    <p>Откройте <span class="path">Мегаплан → Формы</span>. Плагин находит формы Contact Form 7, виджеты «Форма» Elementor Pro (на страницах, в попапах и шаблонах) и формы WPForms.</p>
+    <ol>
+      <li>Отметьте галочкой формы, заявки из которых нужно передавать.</li>
+      <li>Для каждого поля выберите, куда оно идёт: имя или название клиента, фамилия, телефон, email, описание сделки или поле сделки. Назначение угадывается автоматически, проверьте его.</li>
+      <li>В колонке <b>Подпись в сделке</b> задайте понятные названия. У Contact Form 7 нет подписей полей, и без этого в сделке будут технические имена вроде <code>your-message</code>.</li>
+      <li>Чтобы передать поле в поле сделки, выберите «Поле сделки» и укажите его в списке справа.</li>
+    </ol>
+    <figure>
+      <img src="../screenshots/05-polya-formy.png" alt="Настройка формы «Обратный звонок»: поля имени, фамилии, телефона и email идут в карточку клиента, услуга — в поле сделки, остальное — в описание" width="1920" height="977">
+      <figcaption>Форма «Обратный звонок»: контакты — в карточку клиента, «Услуга» — в поле сделки, пожелания и комментарий — в описание.</figcaption>
+    </figure>
+    <p>Если у формы на сайте должна быть своя веб-форма Мегаплана (например, отдельная для юрлиц), выберите её в карточке этой формы.</p>
+
+    <h2 id="metki"><span class="step-num">6.</span>Передавайте UTM-метки и ClientID</h2>
+    <p>Плагин запоминает UTM-метки, страницу входа, источник перехода и ClientID Яндекс Метрики на 90 дней. Если посетитель пришёл по рекламе, а заявку оставил через неделю, метки всё равно попадут в сделку. Это работает и с кешированием страниц.</p>
+    <p>По умолчанию метки записываются в описание сделки. Чтобы получить их в отдельных полях (для отчётов и фильтров в Мегаплане):</p>
+    <ol>
+      <li>В Мегаплане откройте схему процесса (<span class="path">Настройки → Бизнес-процессы → Схемы процессов</span>), нажмите <b>Добавить свойство</b> и создайте поля типа «Строка»: UTM Source, UTM Medium, UTM Campaign, ClientID — какие нужны.</li>
+      <li>Если отправляете через веб-форму, добавьте эти поля в веб-форму.</li>
+      <li>В WordPress на странице <span class="path">Мегаплан → Настройки</span> в блоке «Коды полей сделки для меток» выберите поля из списка.</li>
+    </ol>
+    <figure>
+      <img src="../screenshots/04-kody-poley.png" alt="Коды полей сделки для меток: utm_source и ClientID Метрики выбраны, рядом показаны названия полей" width="1920" height="618">
+      <figcaption>Рядом с выбранным кодом показывается название поля. Неверный код подсвечивается красным.</figcaption>
+    </figure>
+
+    <h2 id="metrika"><span class="step-num">7.</span>Цель Метрики и страница «Спасибо»</h2>
+    <p>В блоке «Яндекс Метрика» укажите идентификатор цели — плагин отправит её после успешной отправки формы. Номер счётчика определяется автоматически. Если нужна отдельная страница благодарности, укажите её адрес в поле «Страница „Спасибо“».</p>
+
+    <h2 id="zhurnal"><span class="step-num">8.</span>Журнал и повторная отправка</h2>
+    <p>Все заявки видны в <span class="path">Мегаплан → Журнал</span>: статус, форма, контакты, источник, номер сделки со ссылкой и способ отправки. В подробностях — полный запрос в Мегаплан и его ответ.</p>
+    <figure>
+      <img src="../screenshots/01-zhurnal.png" alt="Журнал заявок: отправленные заявки со ссылками на сделки, заявка в очереди и заявка с ошибкой и подсказкой" width="2160" height="1350">
+      <figcaption>Журнал: у заявок с ошибкой — подсказка, что исправить, и кнопка «Отправить повторно».</figcaption>
+    </figure>
+    <ul>
+      <li><b>Если Мегаплан недоступен</b>, заявка встаёт в очередь и отправляется повторно через 5 минут, 15 минут, 1 час, 3 часа и 12 часов.</li>
+      <li><b>Если все попытки не удались</b>, на email из настроек придёт одно письмо с данными заявки.</li>
+      <li><b>Кнопка «Отправить повторно»</b> отправляет заявку с текущими настройками, например после того как вы выключили капчу.</li>
+      <li>Письмо с формы сайта уходит как обычно, что бы ни ответил Мегаплан, — заявка не потеряется.</li>
+    </ul>
+    <p>Срок хранения журнала и запись IP-адресов посетителей настраиваются в блоке «Журнал и уведомления».</p>
+
+    <h2 id="problemy">Частые проблемы</h2>
+    <dl class="faq">
+      <dt>В журнале «В веб-форме Мегаплана включена капча»</dt>
+      <dd>Выключите капчу в настройках веб-формы (шаг 1) и нажмите «Отправить повторно» у заявки.</dd>
+      <dt>Клиент в Мегаплане создаётся без имени или заявка отклоняется с ошибкой клиента</dt>
+      <dd>Тип лица в плагине не совпадает с типом лица веб-формы. Подключите API — тип определится сам — или выберите его вручную.</dd>
+      <dt>Поле сделки не заполняется при отправке через веб-форму</dt>
+      <dd>Мегаплан молча пропускает поля, которых нет в веб-форме. Добавьте поле в конструкторе веб-формы или используйте отправку через API.</dd>
+      <dt>Повторные отправки из очереди задерживаются</dt>
+      <dd>Очередь работает через WP-Cron, а он запускается при заходах на сайт. На сайте с небольшой посещаемостью настройте системный cron на хостинге.</dd>
+      <dt>В сделке технические имена полей</dt>
+      <dd>Задайте подписи в колонке «Подпись в сделке» на странице «Формы».</dd>
+    </dl>
+
+    <h2 id="trebovaniya">Требования</h2>
+    <ul>
+      <li>WordPress 5.8 и новее, PHP 7.4 и новее.</li>
+      <li>Contact Form 7, Elementor Pro или WPForms (Lite или Pro).</li>
+      <li>Облачный или коробочный Мегаплан с веб-формами; для API — сотрудник с доступом к настройкам.</li>
+      <li>Глобальные виджеты Elementor не поддерживаются. У WPForms цель Метрики и страница «Спасибо» срабатывают при отправке через AJAX — она включена по умолчанию.</li>
+    </ul>
+
+    <footer>
+      <p>Вопросы по настройке: <a href="https://t.me/anomal3">@anomal3</a> в Telegram · <a href="mailto:anomal95@gmail.com">anomal95@gmail.com</a></p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>
